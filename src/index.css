@@ -64,5 +64,8 @@
   body {
     @apply bg-background text-foreground;
   }
+  #root {
+    @apply text-center p-8 my-0 mx-auto min-h-screen;
+  }
 }
 
