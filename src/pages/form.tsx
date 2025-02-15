@@ -2,9 +2,9 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormNavigation } from "@/components/common/formNavigation";
-import { PersonalInfo } from "@/components/form-steps/personalInfo";
+import { PersonalInfo } from "@/components/form-steps/personal-info/personalInfo";
 import { useMultiSteps } from "@/hooks/useMultiSteps";
-import { formSchema, FormSchema } from "@/schema/formSchema";
+import { formSchema, FormSchema } from "@/schema/formValidationSchema";
 
 export const Form = ({
   setIsFormPage,
