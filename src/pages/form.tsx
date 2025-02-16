@@ -5,15 +5,20 @@ import { FormNavigation } from "@/components/common/formNavigation";
 import { PersonalInfo } from "@/components/form-steps/personal-info/personalInfo";
 import { useMultiSteps } from "@/hooks/useMultiSteps";
 import { formSchema, FormSchema } from "@/schema/formValidationSchema";
+import { Experiences } from "@/components/form-steps/experiences/experiences";
 
 export const Form = ({
   setIsFormPage,
 }: {
   setIsFormPage: (bool: boolean) => void;
 }) => {
-  const methods = useForm({
+  const INITIAL_VALUE = {
+    experiences: [{}],
+  };
+  const methods = useForm<FormSchema>({
     mode: "onBlur",
     resolver: zodResolver(formSchema),
+    defaultValues: INITIAL_VALUE,
   });
 
   const { handleSubmit, control } = methods;
@@ -25,7 +30,7 @@ export const Form = ({
     isLastStep,
     currentStep,
     steps,
-  } = useMultiSteps([<PersonalInfo />]);
+  } = useMultiSteps([<PersonalInfo />, <Experiences />]);
 
   const onSubmitForm: SubmitHandler<FormSchema> = (data) => {
     if (!isLastStep) {
