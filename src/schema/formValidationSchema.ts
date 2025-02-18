@@ -38,6 +38,10 @@ export const formSchema = z.object({
   experiences: z.array(experiencesSchema),
   projects: z.array(projectsSchema),
   educations: z.array(educationsSchema),
+  languages: z.array(z.object({ value: z.string() })).optional(),
+  achievements: z.array(z.object({ value: z.string() })).optional(),
+  certificates: z.array(z.object({ value: z.string() })).optional(),
+
 })
 
 export type FormSchema = z.infer<typeof formSchema>;
