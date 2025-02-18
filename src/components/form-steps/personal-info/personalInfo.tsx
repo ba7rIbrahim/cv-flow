@@ -12,7 +12,7 @@ export const PersonalInfo = () => {
   } = useFormContext<FormSchema>();
   return (
     <FormWrapper title="Personal Info">
-      <div className="">
+      <div>
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-x-4">
           <PersonalFields register={register} errors={errors} />
         </div>
