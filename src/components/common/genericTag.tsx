@@ -50,7 +50,7 @@ export const GenericTag = ({ name, label, error }: DynamicTagProps) => {
           {fields.map((field, index) => (
             <TagItem
               key={field.id}
-              value={field?.value}
+              value={field.value}
               onRemove={() => remove(index)}
             />
           ))}
@@ -84,9 +84,9 @@ const TagItem = memo(({ value, onRemove }: TagItemProps) => (
         viewBox="0 0 24 24"
         fill="none"
         stroke="#2873b7"
-        stroke-width="1.75"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         className="lucide lucide-x"
       >
         <path d="M18 6 6 18" />
