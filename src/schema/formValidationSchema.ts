@@ -32,7 +32,7 @@ export const formSchema = z.object({
   github: z.string().optional(),
   position: z.string().optional(),
   skills: z.array(z.object({
-    skill: z.string().optional(),
+    value: z.string().optional(),
   })).optional(),
   personalImage: z.string().optional(),
   experiences: z.array(experiencesSchema),

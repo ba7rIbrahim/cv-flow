@@ -4,6 +4,7 @@ import { FormSchema } from "@/schema/formValidationSchema";
 import { Field } from "../../common/field";
 import { PersonalImage } from "./components/personalImage";
 import { Skills } from "@/components/form-steps/personal-info/components/skills";
+import { GenericTag } from "@/components/common/genericTag";
 
 export const PersonalInfo = () => {
   const {
@@ -16,10 +17,13 @@ export const PersonalInfo = () => {
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-x-4">
           <PersonalFields register={register} errors={errors} />
         </div>
-        <div className=" ">
-          <Skills error={errors.skills?.message as string} />
-          <PersonalImage />
-        </div>
+        <Skills error={errors.skills?.message as string} />
+        <GenericTag
+          name="skills"
+          label="Skills"
+          error={errors.skills?.message || ""}
+        />
+        <PersonalImage />
       </div>
     </FormWrapper>
   );
