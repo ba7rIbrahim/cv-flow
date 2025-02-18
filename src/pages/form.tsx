@@ -6,6 +6,7 @@ import { PersonalInfo } from "@/components/form-steps/personal-info/personalInfo
 import { useMultiSteps } from "@/hooks/useMultiSteps";
 import { formSchema, FormSchema } from "@/schema/formValidationSchema";
 import { Experiences } from "@/components/form-steps/experiences";
+import { Projects } from "@/components/form-steps/projects";
 
 export const Form = ({
   setIsFormPage,
@@ -14,6 +15,7 @@ export const Form = ({
 }) => {
   const INITIAL_VALUE = {
     experiences: [{}],
+    projects: [{}],
   };
   const methods = useForm<FormSchema>({
     mode: "onBlur",
@@ -30,10 +32,7 @@ export const Form = ({
     isLastStep,
     currentStep,
     steps,
-  } = useMultiSteps([
-    <PersonalInfo />,
-    <Experiences />,
-  ]);
+  } = useMultiSteps([<PersonalInfo />, <Experiences />, <Projects />]);
 
   const onSubmitForm: SubmitHandler<FormSchema> = (data) => {
     if (!isLastStep) {
