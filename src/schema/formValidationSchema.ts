@@ -13,6 +13,13 @@ const projectsSchema = z.object({
   description: z.string().optional(),
 })
 
+const educationsSchema = z.object({
+  college: z.string().optional(),
+  year: z.object({ from: z.date().optional(), to: z.date().optional() }).optional(),
+  qualification: z.string().optional(),
+  description: z.string().optional(),
+})
+
 
 export const formSchema = z.object({
   name: z.string().optional(),
@@ -30,6 +37,7 @@ export const formSchema = z.object({
   personalImage: z.string().optional(),
   experiences: z.array(experiencesSchema),
   projects: z.array(projectsSchema),
+  educations: z.array(educationsSchema),
 })
 
 export type FormSchema = z.infer<typeof formSchema>;

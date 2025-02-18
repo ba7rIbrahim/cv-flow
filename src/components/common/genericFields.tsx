@@ -23,7 +23,7 @@ export const GenericFields = memo(
 
     return (
       <FormWrapper title={title}>
-        <div>
+        <div className="">
           {fields.map((field, index) => (
             <div
               key={field.id}
@@ -45,9 +45,9 @@ export const GenericFields = memo(
                   type === "dateRange" ? (
                     <DatePickerWithRange
                       key={key}
-                      name={`experiences.${index}.duration`}
+                      name={`${name}.${index}.${key}`}
                       error={
-                        errors.experiences?.[index]?.duration?.message || ""
+                        errors?.[name]?.[index]?.[key]?.message || ""
                       }
                     />
                   ) : (
@@ -58,7 +58,7 @@ export const GenericFields = memo(
                       placeholder={`enter your ${label.toLowerCase()}`}
                       register={register}
                       error={errors[name]?.[index]?.[key]?.message || ""}
-                      className={fieldsConfig.length > 3 ? "md:col-span-3" : ""}
+                      className={fieldsConfig.length > 3 ? " last-of-type:md:col-span-3" : ""}
                     />
                   )
                 )}
