@@ -8,6 +8,7 @@ import { formSchema, FormSchema } from "@/schema/formValidationSchema";
 import { Experiences } from "@/components/form-steps/experiences";
 import { Projects } from "@/components/form-steps/projects";
 import { Educations } from "@/components/form-steps/educations";
+import { Miscellaneous } from "@/components/common/miscellaneous";
 
 export const Form = ({
   setIsFormPage,
@@ -39,6 +40,7 @@ export const Form = ({
     <Experiences />,
     <Projects />,
     <Educations />,
+    <Miscellaneous />,
   ]);
 
   const onSubmitForm: SubmitHandler<FormSchema> = (data) => {
