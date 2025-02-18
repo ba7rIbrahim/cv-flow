@@ -7,6 +7,12 @@ const experiencesSchema = z.object({
   description: z.string().optional(),
 })
 
+const projectsSchema = z.object({
+  title: z.string().optional(),
+  link: z.string().optional(),
+  description: z.string().optional(),
+})
+
 
 export const formSchema = z.object({
   name: z.string().optional(),
@@ -23,6 +29,7 @@ export const formSchema = z.object({
   })).optional(),
   personalImage: z.string().optional(),
   experiences: z.array(experiencesSchema),
+  projects: z.array(projectsSchema),
 })
 
 export type FormSchema = z.infer<typeof formSchema>;
