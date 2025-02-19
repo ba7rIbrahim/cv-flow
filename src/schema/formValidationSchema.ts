@@ -41,7 +41,7 @@ export const formSchema = z.object({
   languages: z.array(z.object({ value: z.string() })).optional(),
   achievements: z.array(z.object({ value: z.string() })).optional(),
   certificates: z.array(z.object({ value: z.string() })).optional(),
-
+  color: z.string().optional(),
 })
 
 export type FormSchema = z.infer<typeof formSchema>;
