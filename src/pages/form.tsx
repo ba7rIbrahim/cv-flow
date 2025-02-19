@@ -9,6 +9,7 @@ import { Experiences } from "@/components/form-steps/experiences";
 import { Projects } from "@/components/form-steps/projects";
 import { Educations } from "@/components/form-steps/educations";
 import { Miscellaneous } from "@/components/common/miscellaneous";
+import { Colors } from "@/components/form-steps/colors";
 
 export const Form = ({
   setIsFormPage,
@@ -41,6 +42,7 @@ export const Form = ({
     <Projects />,
     <Educations />,
     <Miscellaneous />,
+    <Colors />,
   ]);
 
   const onSubmitForm: SubmitHandler<FormSchema> = (data) => {

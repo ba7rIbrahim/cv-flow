@@ -16,14 +16,12 @@ export const PersonalInfo = () => {
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-x-4">
           <PersonalFields register={register} errors={errors} />
         </div>
-        <div className=" ">
-          <GenericTag
-            name="skills"
-            label="Skills"
-            error={errors.skills?.message || ""}
-          />
-          <PersonalImage />
-        </div>
+        <GenericTag
+          name="skills"
+          label="Skills"
+          error={errors.skills?.message || ""}
+        />
+        <PersonalImage />
       </div>
     </FormWrapper>
   );
