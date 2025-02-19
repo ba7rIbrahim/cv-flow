@@ -50,7 +50,7 @@ export const GenericTag = ({ name, label, error }: DynamicTagProps) => {
           {fields.map((field, index) => (
             <TagItem
               key={field.id}
-              value={field?.value}
+              value={field.value}
               onRemove={() => remove(index)}
             />
           ))}
