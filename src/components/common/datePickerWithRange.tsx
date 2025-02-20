@@ -9,15 +9,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Controller } from "react-hook-form";
+import { Controller, Path } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import { ErrorMessage } from "@/components/common/errorMessage";
+import { FormSchema } from "@/schema/formValidationSchema";
 
 export function DatePickerWithRange({
   name,
   error,
   className,
-}: { name: string; error?: string } & React.HTMLAttributes<HTMLDivElement>) {
+}: {
+  name: Path<FormSchema>;
+  error?: string;
+} & React.HTMLAttributes<HTMLDivElement>) {
   return (
     <Controller
       name={name}

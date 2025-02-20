@@ -5,14 +5,22 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { ErrorMessage } from "./errorMessage";
 
-interface DynamicTagProps {
+interface GenericTagProps {
   name: string;
   label: string;
   error?: string;
 }
 
-export const GenericTag = ({ name, label, error }: DynamicTagProps) => {
-  const { fields, append, remove } = useFieldArray({ name });
+interface TagField {
+  value: string;
+}
+
+interface TagFormValues {
+  [key: string]: TagField[];
+}
+
+export const GenericTag = ({ name, label, error }: GenericTagProps) => {
+  const { fields, append, remove } = useFieldArray<TagFormValues>({ name });
 
   const [inputValue, setInputValue] = useState<string>("");
 

@@ -8,18 +8,24 @@ import { MoreExperiencesBtn } from "./moreExperiencesBtn";
 import { memo } from "react";
 
 interface GenericFieldsProps {
-  name: string;
+  name: keyof FormSchema;
   title: string;
   fieldsConfig: { key: string; label: string; type?: "text" | "dateRange" }[];
 }
 
 export const GenericFields = memo(
   ({ name, title, fieldsConfig }: GenericFieldsProps) => {
-    const { fields, append, remove } = useFieldArray({ name });
+    const { fields, append, remove } = useFieldArray({
+      name,
+    });
     const {
       register,
       formState: { errors },
     } = useFormContext<FormSchema>();
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const fieldErrors = errors[name] as unknown as Array<Record<string, any>> | undefined;
+
 
     return (
       <FormWrapper title={title}>
@@ -40,25 +46,35 @@ export const GenericFields = memo(
                   close
                 </Button>
               )}
-              <div className={`${fieldsConfig.length <= 3 ? "md:grid-cols-4": "" } w-full grid grid-cols-1 md:grid-cols-3 gap-x-4`}>
+              <div
+                className={`${
+                  fieldsConfig.length <= 3 ? "md:grid-cols-4" : ""
+                } w-full grid grid-cols-1 md:grid-cols-3 gap-x-4`}
+              >
                 {fieldsConfig.map(({ key, label, type }) =>
                   type === "dateRange" ? (
                     <DatePickerWithRange
                       key={key}
-                      name={`${name}.${index}.${key}`}
+                      name={`${name}.${index}.${key}` as keyof FormSchema}
                       error={
-                        errors?.[name]?.[index]?.[key]?.message || ""
+                        (fieldErrors?.[index]?.[key]?.message as string) || ""
                       }
                     />
                   ) : (
                     <Field
                       key={key}
-                      name={`${name}.${index}.${key}`}
+                      name={`${name}.${index}.${key}` as keyof FormSchema}
                       title={label}
                       placeholder={`enter your ${label.toLowerCase()}`}
                       register={register}
-                      error={errors[name]?.[index]?.[key]?.message || ""}
-                      className={`${fieldsConfig.length <= 3 ? "md:col-span-2 last-of-type:md:col-span-4" : ""} last-of-type:md:col-span-3`}
+                      error={
+                        (fieldErrors?.[index]?.[key]?.message as string) || ""
+                      }
+                      className={`${
+                        fieldsConfig.length <= 3
+                          ? "md:col-span-2 last-of-type:md:col-span-4"
+                          : ""
+                      } last-of-type:md:col-span-3`}
                     />
                   )
                 )}

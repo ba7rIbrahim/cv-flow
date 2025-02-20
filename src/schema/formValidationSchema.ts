@@ -1,19 +1,19 @@
 import { z } from "zod";
 
-const experiencesSchema = z.object({
+export const experiencesSchema = z.object({
   organization: z.string().optional(),
   role: z.string().optional(),
   duration: z.object({ from: z.date().optional(), to: z.date().optional() }).optional(),
   description: z.string().optional(),
 })
 
-const projectsSchema = z.object({
+export const projectsSchema = z.object({
   title: z.string().optional(),
   link: z.string().optional(),
   description: z.string().optional(),
 })
 
-const educationsSchema = z.object({
+export const educationsSchema = z.object({
   college: z.string().optional(),
   year: z.object({ from: z.date().optional(), to: z.date().optional() }).optional(),
   qualification: z.string().optional(),
