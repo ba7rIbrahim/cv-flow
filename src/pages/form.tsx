@@ -11,6 +11,7 @@ import { Educations } from "@/components/form-steps/educations";
 import { Miscellaneous } from "@/components/common/miscellaneous";
 import { Colors } from "@/components/form-steps/colors";
 import { Finish } from "@/components/form-steps/finish";
+import { FillStepsForm } from "@/components/common/fillStepsForm";
 
 const INITIAL_VALUE = {
   experiences: [{}],
@@ -55,6 +56,7 @@ export const Form = ({
   return (
     <>
       <h1 className="text-2xl mb-6">Enter Your Information</h1>
+      <FillStepsForm currentStep={currentStep} />
       <FormProvider {...methods}>
         <form
           onSubmit={handleSubmit(onSubmitForm)}
