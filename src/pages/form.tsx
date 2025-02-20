@@ -10,24 +10,26 @@ import { Projects } from "@/components/form-steps/projects";
 import { Educations } from "@/components/form-steps/educations";
 import { Miscellaneous } from "@/components/common/miscellaneous";
 import { Colors } from "@/components/form-steps/colors";
+import { Finish } from "@/components/form-steps/finish";
+
+const INITIAL_VALUE = {
+  experiences: [{}],
+  projects: [{}],
+  educations: [{}],
+};
 
 export const Form = ({
   setIsFormPage,
 }: {
   setIsFormPage: (bool: boolean) => void;
 }) => {
-  const INITIAL_VALUE = {
-    experiences: [{}],
-    projects: [{}],
-    educations: [{}],
-  };
   const methods = useForm<FormSchema>({
     mode: "onBlur",
     resolver: zodResolver(formSchema),
     defaultValues: INITIAL_VALUE,
   });
 
-  const { handleSubmit, control } = methods;
+  const { handleSubmit, control, watch } = methods;
 
   const {
     nextStep,
@@ -43,15 +45,11 @@ export const Form = ({
     <Educations />,
     <Miscellaneous />,
     <Colors />,
+    <Finish />,
   ]);
 
-  const onSubmitForm: SubmitHandler<FormSchema> = (data) => {
-    if (!isLastStep) {
-      nextStep();
-      console.log(data);
-    } else {
-      console.log("Final form data", data);
-    }
+  const onSubmitForm: SubmitHandler<FormSchema> = () => {
+    if (!isLastStep) nextStep();
   };
 
   return (
@@ -67,6 +65,7 @@ export const Form = ({
           <FormNavigation
             isLastStep={isLastStep}
             onPrev={() => (isFirstStep ? setIsFormPage(false) : previousStep())}
+            formData={watch()}
           />
         </form>
       </FormProvider>

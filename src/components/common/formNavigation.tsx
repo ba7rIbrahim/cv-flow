@@ -1,19 +1,49 @@
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Button } from "../ui/button";
+import { PDFTemplate } from "./pdfTemplate";
+import { FormSchema } from "@/schema/formValidationSchema";
 
 interface FormNavigationProps {
   onPrev: () => void;
   isLastStep: boolean;
+  formData: FormSchema;
 }
 
-export const FormNavigation = ({ onPrev, isLastStep }: FormNavigationProps) => {
+export const FormNavigation = ({
+  onPrev,
+  isLastStep,
+  formData,
+}: FormNavigationProps) => {
   return (
-    <div className="flex gap-2 justify-end p-3">
-      <Button type="button" size="lg" variant="outline" onClick={onPrev}>
-        Prev
+    <div
+      className={`${
+        isLastStep ? "justify-center" : "justify-end"
+      } flex gap-2 p-3`}
+    >
+      <Button
+        type="button"
+        className="min-w-20"
+        variant="outline"
+        onClick={onPrev}
+      >
+        {isLastStep ? "Edit More" : "Prev"}
       </Button>
-      <Button type="submit" size="lg">
-        {isLastStep ? "Finish" : "Next"}
-      </Button>
+      {isLastStep ? (
+        <PDFDownloadLink
+          document={<PDFTemplate data={formData} />}
+          fileName={`${formData.name}.pdf`}
+        >
+          {({ loading }) => (
+            <Button type="button">
+              {loading ? "Generating..." : "Download CV"}
+            </Button>
+          )}
+        </PDFDownloadLink>
+      ) : (
+        <Button type="submit" className="min-w-20">
+          Next
+        </Button>
+      )}
     </div>
   );
 };
