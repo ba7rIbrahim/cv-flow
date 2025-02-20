@@ -40,7 +40,7 @@ export const GenericFields = memo(
                   close
                 </Button>
               )}
-              <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-x-4">
+              <div className={`${fieldsConfig.length <= 3 ? "md:grid-cols-4": "" } w-full grid grid-cols-1 md:grid-cols-3 gap-x-4`}>
                 {fieldsConfig.map(({ key, label, type }) =>
                   type === "dateRange" ? (
                     <DatePickerWithRange
@@ -58,7 +58,7 @@ export const GenericFields = memo(
                       placeholder={`enter your ${label.toLowerCase()}`}
                       register={register}
                       error={errors[name]?.[index]?.[key]?.message || ""}
-                      className={fieldsConfig.length > 3 ? " last-of-type:md:col-span-3" : ""}
+                      className={`${fieldsConfig.length <= 3 ? "md:col-span-2 last-of-type:md:col-span-4" : ""} last-of-type:md:col-span-3`}
                     />
                   )
                 )}
