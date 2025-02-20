@@ -22,15 +22,15 @@ const educationsSchema = z.object({
 
 
 export const formSchema = z.object({
-  name: z.string().optional(),
-  email: z.string().optional(),
-  mobile: z.string().optional(),
-  country: z.string().optional(),
-  city: z.string().optional(),
+  name: z.string().nonempty("name is required"),
+  email: z.string().email("email doesn't matches").nonempty("email is required"),
+  mobile: z.string().nonempty("mobile is required").min(11, "like 07700000000").max(11, "like 07700000000"),
+  country: z.string().nonempty("country is required"),
+  city: z.string().nonempty("city is required"),
   street: z.string().optional(),
   linkedin: z.string().optional(),
   github: z.string().optional(),
-  position: z.string().optional(),
+  position: z.string().nonempty("position is required"),
   skills: z.array(z.object({
     value: z.string().optional(),
   })).optional(),

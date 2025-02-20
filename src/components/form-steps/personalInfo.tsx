@@ -1,9 +1,9 @@
 import { FieldErrors, useFormContext, UseFormRegister } from "react-hook-form";
 import { FormWrapper } from "@/layouts/formWrapper";
 import { FormSchema } from "@/schema/formValidationSchema";
-import { Field } from "../../common/field";
-import { PersonalImage } from "./components/personalImage";
+import { Field } from "../common/field";
 import { GenericTag } from "@/components/common/genericTag";
+import { PersonalImage } from "../personalInfo/personalImage";
 
 export const PersonalInfo = () => {
   const {
