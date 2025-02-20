@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Controller } from "react-hook-form";
-import { Label } from "../../../ui/label";
-import { ImageModal } from "./imageModal";
-import { UploadImage } from "./uploadImage";
+import { Label } from "../ui/label";
 import { ImagePreview } from "./imagePreview";
+import { UploadImage } from "./uploadImage";
+import { ImageModal } from "./imageModal";
 
 export const PersonalImage = () => {
   const [previewOpen, setPreviewOpen] = useState<boolean>(false);
